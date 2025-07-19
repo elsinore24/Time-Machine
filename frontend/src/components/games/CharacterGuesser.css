@@ -2,7 +2,7 @@
 
 .character-guesser-overlay {
   position: fixed;
-  top: 0;
+  top: 140px; /* Leave space for header */
   left: 0;
   right: 0;
   bottom: 0;
@@ -25,7 +25,7 @@
   position: relative;
   max-width: 600px;
   width: 100%;
-  max-height: 90vh;
+  max-height: calc(100vh - 180px); /* Account for header space */
   overflow-y: auto;
   color: white;
 }

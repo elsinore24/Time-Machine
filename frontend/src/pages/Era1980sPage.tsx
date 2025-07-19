@@ -6,6 +6,7 @@ import ChatInterface from '../components/ChatInterface';
 import AudioController from '../components/audio/AudioController';
 import TriviaGame from '../components/games/TriviaGame';
 import CharacterGuesser from '../components/games/CharacterGuesser';
+import FindIconGame from '../components/games/FindIconGame';
 import TimeMachineAPI from '../services/api';
 import { useTheme } from '../components/theme/ThemeProvider';
 
@@ -13,6 +14,7 @@ const Era1980sPage: React.FC = () => {
   const [serverInfo, setServerInfo] = useState<any>(null);
   const [showTrivia, setShowTrivia] = useState(false);
   const [showCharacterGuesser, setShowCharacterGuesser] = useState(false);
+  const [showFindIconGame, setShowFindIconGame] = useState(false);
   const { setTheme } = useTheme();
 
   // Apply 1980s theme when component mounts
@@ -48,6 +50,14 @@ const Era1980sPage: React.FC = () => {
 
   const handleCloseCharacterGuesser = () => {
     setShowCharacterGuesser(false);
+  };
+
+  const handleOpenFindIconGame = () => {
+    setShowFindIconGame(true);
+  };
+
+  const handleCloseFindIconGame = () => {
+    setShowFindIconGame(false);
   };
 
   return (
@@ -136,6 +146,24 @@ const Era1980sPage: React.FC = () => {
         >
           🧠 Mind Reader
         </motion.button>
+
+        <motion.button 
+          className="find-icon-launcher"
+          onClick={handleOpenFindIconGame}
+          title="Find the 1980s Icons!"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+            delay: 1.2
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          🔍 Find Icons
+        </motion.button>
         
         <TriviaGame 
           isOpen={showTrivia}
@@ -145,6 +173,11 @@ const Era1980sPage: React.FC = () => {
         <CharacterGuesser 
           isOpen={showCharacterGuesser}
           onClose={handleCloseCharacterGuesser}
+        />
+
+        <FindIconGame 
+          isOpen={showFindIconGame}
+          onClose={handleCloseFindIconGame}
         />
       </main>
 

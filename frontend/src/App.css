@@ -444,11 +444,11 @@ body {
   margin-left: 0.5rem;
 }
 
-/* Trivia Launcher Button */
+/* Game Launcher Buttons */
 .trivia-launcher {
   position: fixed;
   bottom: 20px;
-  left: calc(50% - 90px); /* Position left of center for button pair */
+  left: calc(50% - 140px); /* Position left for trio of buttons */
   background: linear-gradient(45deg, #ff6b6b, #ffd93d);
   border: none;
   border-radius: 50px;
@@ -479,7 +479,7 @@ body {
 .character-guesser-launcher {
   position: fixed;
   bottom: 20px;
-  left: calc(50% + 10px); /* Position right of center for button pair */
+  left: calc(50% - 20px); /* Position center for trio of buttons */
   background: linear-gradient(45deg, #ff1493, #00ffff);
   border: none;
   border-radius: 50px;
@@ -495,6 +495,37 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+/* Find Icon Game Launcher Button */
+.find-icon-launcher {
+  position: fixed;
+  bottom: 20px;
+  left: calc(50% + 100px); /* Position right for trio of buttons */
+  background: linear-gradient(45deg, #39ff14, #00ffff);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 100;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.find-icon-launcher:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(57, 255, 20, 0.4);
+}
+
+.find-icon-launcher:active {
+  transform: translateY(-1px) scale(1.02);
 }
 
 .character-guesser-launcher:hover {
@@ -530,7 +561,7 @@ body {
   
   .trivia-launcher {
     position: fixed;
-    bottom: 70px; /* Stack vertically on mobile */
+    bottom: 120px; /* Stack vertically on mobile */
     left: 50%;
     transform: translateX(-50%);
     padding: 8px 14px;
@@ -538,6 +569,15 @@ body {
   }
   
   .character-guesser-launcher {
+    position: fixed;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  
+  .find-icon-launcher {
     position: fixed;
     bottom: 20px;
     left: 50%;

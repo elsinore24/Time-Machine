@@ -1,7 +1,7 @@
 /* Trivia Game Styles */
 .trivia-overlay {
   position: fixed;
-  top: 0;
+  top: 140px; /* Leave space for header */
   left: 0;
   right: 0;
   bottom: 0;
@@ -20,7 +20,7 @@
   padding: 30px;
   max-width: 600px;
   width: 90vw;
-  max-height: 80vh;
+  max-height: calc(100vh - 180px); /* Account for header space */
   overflow-y: auto;
   position: relative;
   box-shadow: 

@@ -1,0 +1,429 @@
+/* Find the 1980s Icon Game Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+.find-icon-overlay {
+  position: fixed;
+  top: 140px; /* Leave space for header */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.find-icon-modal {
+  background: linear-gradient(135deg, #1a0033 0%, #330066 50%, #1a0033 100%);
+  border: 2px solid #ff1493;
+  border-radius: 15px;
+  width: 95vw;
+  height: calc(100vh - 160px); /* Account for header space */
+  max-width: 1200px;
+  max-height: calc(100vh - 160px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 0 30px rgba(255, 20, 147, 0.5),
+    inset 0 0 30px rgba(0, 255, 255, 0.1);
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(45deg, #ff1493, #ff6b9d);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 15px rgba(255, 20, 147, 0.3);
+}
+
+.close-modal-btn:hover {
+  background: linear-gradient(45deg, #ff6b9d, #ff1493);
+  box-shadow: 0 0 25px rgba(255, 20, 147, 0.6);
+  transform: scale(1.1);
+}
+
+/* Level Selection Screen */
+.level-selection {
+  padding: 40px;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.level-selection h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: 3rem;
+  color: #00ffff;
+  margin-bottom: 20px;
+  text-shadow: 
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 30px #00ffff;
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+.game-description {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.2rem;
+  color: #ff1493;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.level-card {
+  background: linear-gradient(135deg, #2a0040 0%, #4a0080 100%);
+  border: 2px solid #39ff14;
+  border-radius: 15px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.level-card:hover {
+  border-color: #00ffff;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.4),
+    inset 0 0 20px rgba(57, 255, 20, 0.1);
+  transform: translateY(-5px);
+}
+
+.level-preview {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 1px solid #39ff14;
+}
+
+.level-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.level-card:hover .level-preview img {
+  transform: scale(1.1);
+}
+
+.level-card h3 {
+  font-family: 'Orbitron', monospace;
+  color: #39ff14;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+.level-card p {
+  color: #ff1493;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.level-info {
+  color: #00ffff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Game Screen */
+.game-screen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-header {
+  background: linear-gradient(90deg, #1a0033, #330066, #1a0033);
+  border-bottom: 2px solid #ff1493;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-header h3 {
+  font-family: 'Orbitron', monospace;
+  color: #00ffff;
+  margin: 0;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.game-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.control-btn {
+  background: linear-gradient(45deg, #39ff14, #66ff44);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 15px;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+}
+
+.control-btn:hover {
+  background: linear-gradient(45deg, #66ff44, #39ff14);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+  transform: translateY(-2px);
+}
+
+.game-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.game-canvas {
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none; /* Prevent default touch behaviors */
+}
+
+.game-canvas:active {
+  cursor: grabbing;
+}
+
+/* Loading Screen */
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #1a0033, #330066);
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(0, 255, 255, 0.3);
+  border-top: 4px solid #00ffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+.loading-screen p {
+  font-family: 'Orbitron', monospace;
+  color: #ff1493;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+}
+
+/* Explanation Overlay */
+.explanation-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #1a0033 0%, #330066 100%);
+  border: 2px solid #ff1493;
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 500px;
+  min-width: 300px;
+  text-align: center;
+  box-shadow: 
+    0 0 30px rgba(255, 20, 147, 0.5),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.explanation-content h3 {
+  font-family: 'Orbitron', monospace;
+  color: #00ffff;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.explanation-content p {
+  color: #ff1493;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.completion-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.continue-btn {
+  background: linear-gradient(45deg, #39ff14, #66ff44);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+  font-family: 'Orbitron', monospace;
+}
+
+.continue-btn:hover {
+  background: linear-gradient(45deg, #66ff44, #39ff14);
+  box-shadow: 0 0 25px rgba(57, 255, 20, 0.6);
+  transform: translateY(-3px);
+}
+
+.continue-btn.secondary {
+  background: linear-gradient(45deg, #ff1493, #ff6b9d);
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 20, 147, 0.3);
+}
+
+.continue-btn.secondary:hover {
+  background: linear-gradient(45deg, #ff6b9d, #ff1493);
+  box-shadow: 0 0 25px rgba(255, 20, 147, 0.6);
+}
+
+/* Animations */
+@keyframes neonPulse {
+  from {
+    text-shadow: 
+      0 0 10px #00ffff,
+      0 0 20px #00ffff,
+      0 0 30px #00ffff;
+  }
+  to {
+    text-shadow: 
+      0 0 5px #00ffff,
+      0 0 15px #00ffff,
+      0 0 25px #00ffff,
+      0 0 35px #00ffff;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .find-icon-overlay {
+    top: 120px; /* Smaller header on mobile */
+  }
+  
+  .find-icon-modal {
+    width: 100vw;
+    height: calc(100vh - 120px);
+    max-height: calc(100vh - 120px);
+    border-radius: 0;
+  }
+  
+  .level-selection {
+    padding: 20px;
+  }
+  
+  .level-selection h2 {
+    font-size: 2rem;
+  }
+  
+  .levels-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .level-card {
+    padding: 15px;
+  }
+  
+  .level-preview {
+    height: 120px;
+  }
+  
+  .game-header {
+    padding: 10px 15px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .game-header h3 {
+    font-size: 1.2rem;
+  }
+  
+  .control-btn {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+  
+  .explanation-overlay {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    transform: none;
+    max-width: none;
+    min-width: auto;
+  }
+  
+  .completion-actions {
+    flex-direction: column;
+  }
+  
+  .continue-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .level-selection h2 {
+    font-size: 1.5rem;
+  }
+  
+  .game-description {
+    font-size: 1rem;
+  }
+  
+  .game-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .explanation-content h3 {
+    font-size: 1.2rem;
+  }
+  
+  .explanation-content p {
+    font-size: 0.9rem;
+  }
+}
