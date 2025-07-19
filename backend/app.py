@@ -24,6 +24,12 @@ async def lifespan(app: FastAPI):
     # Startup
     logger.info("Starting Time Machine API...")
     try:
+        # Debug: Check environment variables before validation
+        import os
+        logger.info(f"Debug - OPENAI_API_KEY set: {bool(os.getenv('OPENAI_API_KEY'))}")
+        logger.info(f"Debug - PINECONE_API_KEY set: {bool(os.getenv('PINECONE_API_KEY'))}")
+        logger.info(f"Debug - PINECONE_ENVIRONMENT set: {bool(os.getenv('PINECONE_ENVIRONMENT'))}")
+        
         # Validate configuration
         config.validate()
         
@@ -117,6 +123,19 @@ async def root():
             "chat": "/chat",
             "docs": "/docs"
         }
+    }
+
+@app.get("/debug/env")
+async def debug_env():
+    """Debug endpoint to check environment variables (remove in production)"""
+    import os
+    return {
+        "openai_key_set": bool(os.getenv("OPENAI_API_KEY")),
+        "pinecone_key_set": bool(os.getenv("PINECONE_API_KEY")),
+        "pinecone_env_set": bool(os.getenv("PINECONE_ENVIRONMENT")),
+        "openai_key_length": len(os.getenv("OPENAI_API_KEY", "")),
+        "pinecone_key_length": len(os.getenv("PINECONE_API_KEY", "")),
+        "pinecone_env_value": os.getenv("PINECONE_ENVIRONMENT", "not_set")
     }
 
 # Run the server if this file is executed directly
