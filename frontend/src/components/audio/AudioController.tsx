@@ -75,6 +75,7 @@ const AudioController: React.FC<AudioControllerProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.3);
   const [isMuted, setIsMuted] = useState(false);
+  const [wasPlayingBeforeMute, setWasPlayingBeforeMute] = useState(false);
   const [currentSource, setCurrentSource] = useState<'synthwave' | string>('timemachine'); // Default to Time Machine radio stream
   const [showControls, setShowControls] = useState(false);
   const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
@@ -92,10 +93,11 @@ const AudioController: React.FC<AudioControllerProps> = ({
     }), {} as { [key: string]: string })
   };
 
-  // Detect mobile device
+  // Detect mobile device (iOS specifically)
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+      setIsMobile(isMobileDevice);
     };
     
     checkMobile();
@@ -164,11 +166,38 @@ const AudioController: React.FC<AudioControllerProps> = ({
 
   const toggleMute = useCallback(() => {
     const newMutedState = !isMuted;
+    console.log('Mute toggle:', { newMutedState, isMobile, isPlaying }); // Debug log
     setIsMuted(newMutedState);
+    
     if (audioRef.current) {
-      audioRef.current.volume = newMutedState ? 0 : volume;
+      if (isMobile) {
+        // On mobile, pause/resume audio instead of volume control
+        console.log('Mobile mute action:', newMutedState ? 'pausing' : 'resuming'); // Debug log
+        if (newMutedState) {
+          // Store current playing state before muting
+          setWasPlayingBeforeMute(isPlaying);
+          if (isPlaying) {
+            audioRef.current.pause();
+            setIsPlaying(false);
+          }
+        } else {
+          // Restore previous playing state when unmuting
+          if (wasPlayingBeforeMute) {
+            audioRef.current.play().then(() => {
+              setIsPlaying(true);
+              console.log('Audio resumed successfully'); // Debug log
+            }).catch((error) => {
+              console.error('Audio resume failed:', error); // Debug log
+            });
+          }
+        }
+      } else {
+        // On desktop, use volume control
+        console.log('Desktop volume mute:', newMutedState ? 0 : volume); // Debug log
+        audioRef.current.volume = newMutedState ? 0 : volume;
+      }
     }
-  }, [isMuted, volume]);
+  }, [isMuted, volume, isMobile, isPlaying, wasPlayingBeforeMute]);
 
   const handleSourceChange = (source: 'synthwave' | string) => {
     console.log('Changing audio source to:', source); // Debug log
