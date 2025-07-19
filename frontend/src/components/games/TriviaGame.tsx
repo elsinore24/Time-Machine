@@ -1,5 +1,5 @@
 // 1980s Trivia Game - Interactive nostalgia quiz
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TriviaQuestion, getRandomQuestions } from '../../data/triviaQuestions';
 import './TriviaGame.css';
@@ -40,7 +40,24 @@ const TriviaGame: React.FC<TriviaGameProps> = ({ isOpen, onClose }) => {
     if (isOpen && !gameStarted) {
       startNewGame();
     }
-  }, [isOpen]);
+  }, [isOpen, gameStarted]);
+
+  const handleAnswer = useCallback((answerIndex: number) => {
+    if (gameState.selectedAnswer !== null) return;
+
+    const currentQ = gameState.questions[gameState.currentQuestion];
+    const isCorrect = answerIndex === currentQ.correctAnswer;
+    const timeBonus = Math.max(0, timeLeft - 10); // Bonus points for speed
+
+    setGameState(prev => ({
+      ...prev,
+      selectedAnswer: answerIndex,
+      showExplanation: true,
+      score: isCorrect ? prev.score + 10 + timeBonus : prev.score,
+      streak: isCorrect ? prev.streak + 1 : 0,
+      totalTime: prev.totalTime + (30 - timeLeft)
+    }));
+  }, [gameState.selectedAnswer, gameState.questions, gameState.currentQuestion, timeLeft]);
 
   // Timer effect
   useEffect(() => {
@@ -54,7 +71,7 @@ const TriviaGame: React.FC<TriviaGameProps> = ({ isOpen, onClose }) => {
       handleAnswer(-1);
     }
     return () => clearTimeout(timer);
-  }, [timeLeft, gameStarted, gameState.showExplanation, gameState.gameComplete]);
+  }, [timeLeft, gameStarted, gameState.showExplanation, gameState.gameComplete, handleAnswer]);
 
   const startNewGame = () => {
     const questions = getRandomQuestions(5); // 5 questions per game
@@ -70,23 +87,6 @@ const TriviaGame: React.FC<TriviaGameProps> = ({ isOpen, onClose }) => {
     });
     setTimeLeft(30);
     setGameStarted(true);
-  };
-
-  const handleAnswer = (answerIndex: number) => {
-    if (gameState.selectedAnswer !== null) return;
-
-    const currentQ = gameState.questions[gameState.currentQuestion];
-    const isCorrect = answerIndex === currentQ.correctAnswer;
-    const timeBonus = Math.max(0, timeLeft - 10); // Bonus points for speed
-
-    setGameState(prev => ({
-      ...prev,
-      selectedAnswer: answerIndex,
-      showExplanation: true,
-      score: isCorrect ? prev.score + 10 + timeBonus : prev.score,
-      streak: isCorrect ? prev.streak + 1 : 0,
-      totalTime: prev.totalTime + (30 - timeLeft)
-    }));
   };
 
   const nextQuestion = () => {

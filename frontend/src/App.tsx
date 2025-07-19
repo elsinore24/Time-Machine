@@ -62,7 +62,7 @@ const AppContent: React.FC = () => {
   // Apply initial theme
   useEffect(() => {
     setTheme(selectedEra);
-  }, [setTheme]);
+  }, [setTheme, selectedEra]);
 
   const handleOpenTrivia = () => {
     setShowTrivia(true);

@@ -1,5 +1,5 @@
 // Audio controller for background music and sound effects
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './AudioController.css';
 
 interface AudioControllerProps {
@@ -23,6 +23,26 @@ const AudioController: React.FC<AudioControllerProps> = ({
     radio: 'http://puma.streemlion.com:2910/stream'
   };
 
+  const handlePlay = useCallback(async () => {
+    if (audioRef.current) {
+      try {
+        await audioRef.current.play();
+        setIsPlaying(true);
+        onAudioStateChange?.(true);
+      } catch (error) {
+        console.error('Audio play failed:', error);
+      }
+    }
+  }, [onAudioStateChange]);
+
+  const handlePause = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+      onAudioStateChange?.(false);
+    }
+  }, [onAudioStateChange]);
+
   // Auto-start audio when 1980s theme becomes active
   useEffect(() => {
     if (isActive && !isPlaying) {
@@ -34,27 +54,7 @@ const AudioController: React.FC<AudioControllerProps> = ({
     } else if (!isActive && isPlaying) {
       handlePause();
     }
-  }, [isActive]);
-
-  const handlePlay = async () => {
-    if (audioRef.current) {
-      try {
-        await audioRef.current.play();
-        setIsPlaying(true);
-        onAudioStateChange?.(true);
-      } catch (error) {
-        console.error('Audio play failed:', error);
-      }
-    }
-  };
-
-  const handlePause = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-      onAudioStateChange?.(false);
-    }
-  };
+  }, [isActive, isPlaying, handlePause, handlePlay]);
 
   const handleVolumeChange = (newVolume: number) => {
     setVolume(newVolume);
