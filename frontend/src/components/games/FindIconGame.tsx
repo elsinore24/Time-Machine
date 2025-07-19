@@ -1,7 +1,7 @@
 // Find the 1980s Icon - Hidden Object Game
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GameLevel, HiddenObject, FIND_GAME_LEVELS } from '../../data/findGameLevels';
+import { FIND_GAME_LEVELS } from '../../data/findGameLevels';
 import './FindIconGame.css';
 
 interface FindIconGameProps {
@@ -94,6 +94,38 @@ const FindIconGame: React.FC<FindIconGameProps> = ({ isOpen, onClose }) => {
     }));
   }, [isOpen, gameStarted, currentLevel]);
 
+  // Draw UI overlay
+  const drawUI = useCallback((ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
+    if (!currentLevel) return;
+
+    // Progress indicator
+    const found = gameState.foundObjects.size;
+    const total = currentLevel.hiddenObjects.length;
+    const progress = found / total;
+
+    // Progress bar background
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    ctx.fillRect(20, 20, 200, 30);
+
+    // Progress bar fill
+    ctx.fillStyle = '#ff1493';
+    ctx.fillRect(22, 22, (200 - 4) * progress, 26);
+
+    // Progress text
+    ctx.fillStyle = '#00ffff';
+    ctx.font = 'bold 14px Orbitron, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${found}/${total} Found`, 120, 40);
+
+    // Zoom indicator
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    ctx.fillRect(canvas.width - 100, 20, 80, 25);
+    ctx.fillStyle = '#39ff14';
+    ctx.font = '12px Orbitron, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${Math.round(gameState.zoom * 100)}%`, canvas.width - 60, 37);
+  }, [gameState, currentLevel]);
+
   // Render game on canvas
   const renderGame = useCallback(() => {
     const canvas = canvasRef.current;
@@ -163,39 +195,8 @@ const FindIconGame: React.FC<FindIconGameProps> = ({ isOpen, onClose }) => {
 
     // Draw UI overlay (progress, zoom controls)
     drawUI(ctx, canvas);
-  }, [gameState, currentLevel]);
+  }, [gameState, currentLevel, drawUI]);
 
-  // Draw UI overlay
-  const drawUI = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
-    if (!currentLevel) return;
-
-    // Progress indicator
-    const found = gameState.foundObjects.size;
-    const total = currentLevel.hiddenObjects.length;
-    const progress = found / total;
-
-    // Progress bar background
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-    ctx.fillRect(20, 20, 200, 30);
-
-    // Progress bar fill
-    ctx.fillStyle = '#ff1493';
-    ctx.fillRect(22, 22, (200 - 4) * progress, 26);
-
-    // Progress text
-    ctx.fillStyle = '#00ffff';
-    ctx.font = 'bold 14px Orbitron, monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText(`${found}/${total} Found`, 120, 40);
-
-    // Zoom indicator
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-    ctx.fillRect(canvas.width - 100, 20, 80, 25);
-    ctx.fillStyle = '#39ff14';
-    ctx.font = '12px Orbitron, monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText(`${Math.round(gameState.zoom * 100)}%`, canvas.width - 60, 37);
-  };
 
   // Render game when state changes
   useEffect(() => {
@@ -385,47 +386,6 @@ const FindIconGame: React.FC<FindIconGameProps> = ({ isOpen, onClose }) => {
     }
   }, [gameState.showExplanation]);
 
-  // Handle tap for finding objects on mobile
-  const handleTouchTap = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
-    if (gameState.showExplanation || touchState.isPanning) return;
-    
-    const canvas = canvasRef.current;
-    if (!canvas || !currentLevel) return;
-    
-    const touch = event.changedTouches[0];
-    const rect = canvas.getBoundingClientRect();
-    const canvasX = touch.clientX - rect.left;
-    const canvasY = touch.clientY - rect.top;
-    
-    // Transform screen coordinates to world coordinates
-    const worldX = (canvasX - gameState.panX) / gameState.zoom;
-    const worldY = (canvasY - gameState.panY) / gameState.zoom;
-    
-    // Check for hits on hidden objects
-    for (const obj of currentLevel.hiddenObjects) {
-      if (gameState.foundObjects.has(obj.id)) continue;
-      
-      if (worldX >= obj.x && worldX <= obj.x + obj.width &&
-          worldY >= obj.y && worldY <= obj.y + obj.height) {
-        
-        // Object found!
-        const newFoundObjects = new Set(gameState.foundObjects);
-        newFoundObjects.add(obj.id);
-        
-        const allFound = newFoundObjects.size === currentLevel.hiddenObjects.length;
-        
-        setGameState(prev => ({
-          ...prev,
-          foundObjects: newFoundObjects,
-          showExplanation: true,
-          currentExplanation: obj.explanation,
-          gameComplete: allFound
-        }));
-        
-        break;
-      }
-    }
-  }, [gameState, currentLevel, touchState.isPanning]);
 
   // Start game
   const startGame = (levelIndex: number = 0) => {
