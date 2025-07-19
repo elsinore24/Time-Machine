@@ -26,14 +26,16 @@ class Config:
     
     # API Configuration
     API_HOST = "0.0.0.0"
-    API_PORT = 8000
+    API_PORT = int(os.getenv("PORT", 8000))
     
     # CORS Configuration
     ALLOWED_ORIGINS = [
         "http://localhost:3000",
         "http://localhost:3001",
         "http://127.0.0.1:3000",
-        "http://127.0.0.1:3001"
+        "http://127.0.0.1:3001",
+        "https://*.netlify.app",
+        "https://*.netlify.com"
     ]
     
     @classmethod
