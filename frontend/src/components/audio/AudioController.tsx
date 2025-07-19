@@ -11,6 +11,50 @@ interface RadioStation {
   frequency: string;
 }
 
+// Radio stations - moved outside component to prevent recreation on every render
+const RADIO_STATIONS: RadioStation[] = [
+  {
+    id: 'dance',
+    name: '80s Dance',
+    url: 'https://streams.80s80s.de/dance/mp3-192/',
+    genre: 'Dance',
+    description: 'Non-stop 80s dance hits',
+    frequency: '80.1 FM'
+  },
+  {
+    id: 'soul',
+    name: '80s Soul',
+    url: 'http://streams.80s80s.de/soul/mp3-192/',
+    genre: 'Soul',
+    description: 'Smooth 80s soul & R&B',
+    frequency: '80.2 FM'
+  },
+  {
+    id: 'classic',
+    name: 'The 80s Radio',
+    url: 'http://playerservices.streamtheworld.com/pls/T_RAD_80S_S01.pls',
+    genre: 'Classic',
+    description: 'Best of 80s classics',
+    frequency: '80.3 FM'
+  },
+  {
+    id: 'rock',
+    name: '80s Rock',
+    url: 'https://stream.starfm.de/80srock/mp3-192/',
+    genre: 'Rock',
+    description: 'Radical 80s rock anthems',
+    frequency: '80.4 FM'
+  },
+  {
+    id: 'retro',
+    name: 'Retro 80s',
+    url: 'http://procyon.shoutca.st:8032',
+    genre: 'Retro',
+    description: 'Totally tubular 80s mix',
+    frequency: '80.5 FM'
+  }
+];
+
 interface AudioControllerProps {
   isActive: boolean;
   onAudioStateChange?: (isPlaying: boolean) => void;
@@ -30,54 +74,10 @@ const AudioController: React.FC<AudioControllerProps> = ({
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const controllerRef = useRef<HTMLDivElement | null>(null);
 
-  // Radio stations
-  const radioStations: RadioStation[] = [
-    {
-      id: 'dance',
-      name: '80s Dance',
-      url: 'https://streams.80s80s.de/dance/mp3-192/',
-      genre: 'Dance',
-      description: 'Non-stop 80s dance hits',
-      frequency: '80.1 FM'
-    },
-    {
-      id: 'soul',
-      name: '80s Soul',
-      url: 'http://streams.80s80s.de/soul/mp3-192/',
-      genre: 'Soul',
-      description: 'Smooth 80s soul & R&B',
-      frequency: '80.2 FM'
-    },
-    {
-      id: 'classic',
-      name: 'The 80s Radio',
-      url: 'http://playerservices.streamtheworld.com/pls/T_RAD_80S_S01.pls',
-      genre: 'Classic',
-      description: 'Best of 80s classics',
-      frequency: '80.3 FM'
-    },
-    {
-      id: 'rock',
-      name: '80s Rock',
-      url: 'https://stream.starfm.de/80srock/mp3-192/',
-      genre: 'Rock',
-      description: 'Radical 80s rock anthems',
-      frequency: '80.4 FM'
-    },
-    {
-      id: 'retro',
-      name: 'Retro 80s',
-      url: 'http://procyon.shoutca.st:8032',
-      genre: 'Retro',
-      description: 'Totally tubular 80s mix',
-      frequency: '80.5 FM'
-    }
-  ];
-
   // Audio sources
   const audioSources: { [key: string]: string } = {
     synthwave: '/assets/sounds/1h Free No Copyright Music _ 80s Synthwave Electro Pop Rock Background Retrowave For YouTube Videos 4.mp3',
-    ...radioStations.reduce((acc, station) => ({
+    ...RADIO_STATIONS.reduce((acc, station) => ({
       ...acc,
       [station.id]: station.url
     }), {} as { [key: string]: string })
@@ -186,14 +186,14 @@ const AudioController: React.FC<AudioControllerProps> = ({
   // Load saved source on mount
   useEffect(() => {
     const savedSource = localStorage.getItem('timeMachineAudioSource');
-    if (savedSource && (savedSource === 'synthwave' || radioStations.find(s => s.id === savedSource))) {
+    if (savedSource && (savedSource === 'synthwave' || RADIO_STATIONS.find(s => s.id === savedSource))) {
       setCurrentSource(savedSource);
     }
-  }, [radioStations]);
+  }, []); // No dependencies needed since RADIO_STATIONS is constant
 
   const getCurrentStation = () => {
     if (currentSource === 'synthwave') return null;
-    return radioStations.find(station => station.id === currentSource);
+    return RADIO_STATIONS.find(station => station.id === currentSource);
   };
 
   const getCurrentSourceName = () => {
@@ -303,7 +303,7 @@ const AudioController: React.FC<AudioControllerProps> = ({
 
               {/* Radio Station Roller */}
               <div className="station-roller">
-                {radioStations.map((station) => (
+                {RADIO_STATIONS.map((station) => (
                   <button
                     key={station.id}
                     className={`station-btn ${currentSource === station.id ? 'active' : ''}`}
