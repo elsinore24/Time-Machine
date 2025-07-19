@@ -1,5 +1,6 @@
-// Theme provider for managing 1980s visual theming
+// Theme provider for managing era-based visual theming
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface ThemeContextType {
   currentTheme: string;
@@ -23,6 +24,21 @@ interface ThemeProviderProps {
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [currentTheme, setCurrentTheme] = useState<string>('default');
+  const location = useLocation();
+
+  // Automatically detect theme from route
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.includes('/1980s')) {
+      setCurrentTheme('1980s');
+    } else if (path.includes('/1990s')) {
+      setCurrentTheme('1990s');
+    } else if (path.includes('/2000s')) {
+      setCurrentTheme('2000s');
+    } else {
+      setCurrentTheme('default');
+    }
+  }, [location.pathname]);
 
   const setTheme = (theme: string) => {
     setCurrentTheme(theme);
@@ -38,19 +54,21 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     const app = document.querySelector('.App');
 
     // Remove existing theme classes
-    body.classList.remove('theme-1980s');
-    app?.classList.remove('theme-1980s');
+    const themeClasses = ['theme-1980s', 'theme-1990s', 'theme-2000s'];
+    themeClasses.forEach(themeClass => {
+      body.classList.remove(themeClass);
+      app?.classList.remove(themeClass);
+      removeThemeFromComponents(themeClass);
+    });
 
     // Add new theme class
-    if (currentTheme === '1980s') {
-      body.classList.add('theme-1980s');
-      app?.classList.add('theme-1980s');
+    if (currentTheme !== 'default') {
+      const themeClass = `theme-${currentTheme}`;
+      body.classList.add(themeClass);
+      app?.classList.add(themeClass);
       
       // Apply theme to all themed components
-      applyThemeToComponents('theme-1980s');
-    } else {
-      // Remove theme from all components
-      removeThemeFromComponents('theme-1980s');
+      applyThemeToComponents(themeClass);
     }
   }, [currentTheme]);
 

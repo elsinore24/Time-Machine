@@ -1,0 +1,267 @@
+/* Landing Page Styles */
+.landing-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0d2e 50%, #0d1421 100%);
+  color: #39ff14;
+  font-family: 'Orbitron', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated background grid */
+.landing-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 191, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 191, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+.landing-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Header Styles */
+.landing-header {
+  margin-bottom: 4rem;
+}
+
+.landing-title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  text-shadow: 
+    0 0 10px #39ff14,
+    0 0 20px #39ff14,
+    0 0 30px #39ff14;
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+.landing-subtitle {
+  font-size: 1.5rem;
+  color: #00bfff;
+  text-shadow: 0 0 10px #00bfff;
+  font-weight: 400;
+}
+
+@keyframes neonPulse {
+  from {
+    text-shadow: 
+      0 0 10px #39ff14,
+      0 0 20px #39ff14,
+      0 0 30px #39ff14;
+  }
+  to {
+    text-shadow: 
+      0 0 20px #39ff14,
+      0 0 30px #39ff14,
+      0 0 40px #39ff14;
+  }
+}
+
+/* Era Selection Styles */
+.era-selection {
+  margin-bottom: 4rem;
+}
+
+.selection-title {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  color: #ff1493;
+  text-shadow: 0 0 10px #ff1493;
+}
+
+.era-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.era-card {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #00bfff;
+  border-radius: 15px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.era-card.active {
+  box-shadow: 
+    0 5px 20px rgba(0, 191, 255, 0.2),
+    inset 0 0 20px rgba(0, 191, 255, 0.1);
+}
+
+.era-card.active:hover {
+  border-color: #39ff14;
+  box-shadow: 
+    0 10px 30px rgba(57, 255, 20, 0.3),
+    inset 0 0 30px rgba(57, 255, 20, 0.1);
+}
+
+.era-card.inactive {
+  border-color: #666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.era-card.inactive:hover {
+  border-color: #888;
+}
+
+.era-year {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #00bfff;
+  text-shadow: 0 0 10px #00bfff;
+}
+
+.era-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #39ff14;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(45deg, #ff1493, #8a2be2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Transition Styles */
+.time-machine-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+}
+
+.transition-overlay {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #1a0d2e 0%, #0a0a0a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transition-content {
+  text-align: center;
+  color: #39ff14;
+}
+
+.time-portal {
+  font-size: 8rem;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 0 20px #39ff14);
+}
+
+.transition-content h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 15px #00bfff;
+}
+
+.loading-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #ff1493, #00bfff, #39ff14);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Footer Styles */
+.landing-footer {
+  margin-top: 3rem;
+}
+
+.landing-footer p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .landing-title {
+    font-size: 2.5rem;
+  }
+  
+  .landing-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .era-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .era-card {
+    padding: 1.5rem;
+  }
+  
+  .era-year {
+    font-size: 2rem;
+  }
+  
+  .time-portal {
+    font-size: 6rem;
+  }
+  
+  .transition-content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-content {
+    padding: 1rem;
+  }
+  
+  .landing-title {
+    font-size: 2rem;
+  }
+  
+  .era-year {
+    font-size: 1.8rem;
+  }
+  
+  .era-description {
+    font-size: 1rem;
+  }
+}
