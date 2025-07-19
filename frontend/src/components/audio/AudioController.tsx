@@ -15,6 +15,7 @@ const AudioController: React.FC<AudioControllerProps> = ({
   const [volume, setVolume] = useState(0.3);
   const [currentSource, setCurrentSource] = useState<'synthwave' | 'radio'>('synthwave');
   const [showControls, setShowControls] = useState(false);
+  const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Audio sources
@@ -43,18 +44,19 @@ const AudioController: React.FC<AudioControllerProps> = ({
     }
   }, [onAudioStateChange]);
 
-  // Auto-start audio when 1980s theme becomes active
+  // Auto-start audio when 1980s theme becomes active (only once)
   useEffect(() => {
-    if (isActive && !isPlaying) {
+    if (isActive && !hasAutoPlayed) {
       // Add small delay to handle browser autoplay restrictions
       const timer = setTimeout(() => {
         handlePlay();
+        setHasAutoPlayed(true);
       }, 1000);
       return () => clearTimeout(timer);
     } else if (!isActive && isPlaying) {
       handlePause();
     }
-  }, [isActive, isPlaying, handlePause, handlePlay]);
+  }, [isActive, hasAutoPlayed, isPlaying, handlePause, handlePlay]);
 
   const handleVolumeChange = (newVolume: number) => {
     setVolume(newVolume);

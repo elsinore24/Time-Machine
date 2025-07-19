@@ -63,7 +63,23 @@
   gap: 10px;
 }
 
-.audio-btn, .source-btn {
+.audio-btn {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--neon-green, #39ff14);
+  color: var(--neon-green, #39ff14);
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', monospace;
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.source-btn {
   background: rgba(0, 0, 0, 0.8);
   border: 1px solid var(--neon-green, #39ff14);
   color: var(--neon-green, #39ff14);
