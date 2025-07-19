@@ -144,7 +144,10 @@ async def debug_env():
         "pinecone_env_set": bool(os.getenv("PINECONE_ENVIRONMENT")),
         "openai_key_length": len(os.getenv("OPENAI_API_KEY", "")),
         "pinecone_key_length": len(os.getenv("PINECONE_API_KEY", "")),
-        "pinecone_env_value": os.getenv("PINECONE_ENVIRONMENT", "not_set")
+        "pinecone_env_value": os.getenv("PINECONE_ENVIRONMENT", "not_set"),
+        "allowed_origins": config.ALLOWED_ORIGINS,
+        "port": config.API_PORT,
+        "rag_chain_initialized": rag_chain is not None
     }
 
 # Run the server if this file is executed directly

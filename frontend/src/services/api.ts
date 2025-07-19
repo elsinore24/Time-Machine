@@ -5,6 +5,9 @@ import { ChatRequest, ChatResponse, ApiError } from '../types';
 // Configure axios defaults
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
+console.log('🔧 API Base URL:', API_BASE_URL);
+console.log('🔧 Environment:', process.env.NODE_ENV);
+
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   timeout: 30000, // 30 second timeout for AI responses
@@ -61,8 +64,10 @@ export class TimeMachineAPI {
       if (error.response?.data) {
         const apiError: ApiError = error.response.data;
         throw new Error(apiError.error || 'Failed to get response from Time Machine');
-      } else if (error.code === 'ECONNREFUSED') {
+      } else if (error.code === 'ECONNREFUSED' || error.code === 'ERR_NETWORK') {
         throw new Error('Cannot connect to Time Machine server. Is the backend running?');
+      } else if (error.code === 'ERR_BAD_REQUEST') {
+        throw new Error('Invalid request to Time Machine server.');
       } else if (error.code === 'TIMEOUT') {
         throw new Error('Time Machine is taking too long to respond. Please try again.');
       } else {
