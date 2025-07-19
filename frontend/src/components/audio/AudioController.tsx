@@ -14,6 +14,14 @@ interface RadioStation {
 // Radio stations - moved outside component to prevent recreation on every render
 const RADIO_STATIONS: RadioStation[] = [
   {
+    id: 'timemachine',
+    name: '1980s Radio Stream',
+    url: 'http://puma.streemlion.com:2910/stream',
+    genre: 'Classic',
+    description: 'Streaming 1980s music for immersive Time Machine experience',
+    frequency: '80.0 FM'
+  },
+  {
     id: 'dance',
     name: '80s Dance',
     url: 'https://streams.80s80s.de/dance/mp3-192/',
@@ -66,7 +74,8 @@ const AudioController: React.FC<AudioControllerProps> = ({
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.3);
-  const [currentSource, setCurrentSource] = useState<'synthwave' | string>('synthwave');
+  const [isMuted, setIsMuted] = useState(false);
+  const [currentSource, setCurrentSource] = useState<'synthwave' | string>('timemachine'); // Default to Time Machine radio stream
   const [showControls, setShowControls] = useState(false);
   const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -149,11 +158,20 @@ const AudioController: React.FC<AudioControllerProps> = ({
   const handleVolumeChange = (newVolume: number) => {
     setVolume(newVolume);
     if (audioRef.current) {
-      audioRef.current.volume = newVolume;
+      audioRef.current.volume = isMuted ? 0 : newVolume;
     }
   };
 
+  const toggleMute = useCallback(() => {
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
+    if (audioRef.current) {
+      audioRef.current.volume = newMutedState ? 0 : volume;
+    }
+  }, [isMuted, volume]);
+
   const handleSourceChange = (source: 'synthwave' | string) => {
+    console.log('Changing audio source to:', source); // Debug log
     setCurrentSource(source);
     setIsLoading(true);
     
@@ -186,8 +204,22 @@ const AudioController: React.FC<AudioControllerProps> = ({
   // Load saved source on mount
   useEffect(() => {
     const savedSource = localStorage.getItem('timeMachineAudioSource');
-    if (savedSource && (savedSource === 'synthwave' || RADIO_STATIONS.find(s => s.id === savedSource))) {
+    console.log('Saved audio source:', savedSource); // Debug log
+    
+    // Force new default for Time Machine radio stream
+    if (savedSource === 'synthwave' || savedSource === 'dance') {
+      console.log('Found old default in localStorage, switching to timemachine'); // Debug log
+      localStorage.setItem('timeMachineAudioSource', 'timemachine');
+      setCurrentSource('timemachine');
+    } else if (savedSource && RADIO_STATIONS.find(s => s.id === savedSource)) {
+      console.log('Loading saved radio source:', savedSource); // Debug log
       setCurrentSource(savedSource);
+    } else {
+      // Default to Time Machine radio stream if no saved preference
+      console.log('Using default source: timemachine'); // Debug log
+      setCurrentSource('timemachine');
+      // Save the default choice
+      localStorage.setItem('timeMachineAudioSource', 'timemachine');
     }
   }, []); // No dependencies needed since RADIO_STATIONS is constant
 
@@ -222,17 +254,24 @@ const AudioController: React.FC<AudioControllerProps> = ({
         onError={(error) => {
           console.error('Audio error:', error);
           setIsLoading(false);
-          // Fallback to synthwave if radio fails
-          if (currentSource !== 'synthwave') {
-            setCurrentSource('synthwave');
-          }
+          // Only fallback to synthwave if user was actively playing and radio fails multiple times
+          // Don't auto-switch on initial load errors
         }}
         onLoadedData={() => {
           if (audioRef.current) {
-            audioRef.current.volume = volume;
+            audioRef.current.volume = isMuted ? 0 : volume;
           }
         }}
       />
+
+      {/* External Mute Button */}
+      <button 
+        className="mute-btn"
+        onClick={toggleMute}
+        title={isMuted ? "Unmute Audio" : "Mute Audio"}
+      >
+        {isMuted ? '🔇' : '🔊'}
+      </button>
 
       {/* Audio Controls */}
       <div className={`audio-controls ${showControls ? 'expanded' : 'collapsed'}`}>

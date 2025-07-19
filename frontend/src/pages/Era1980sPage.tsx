@@ -5,12 +5,14 @@ import { motion } from 'framer-motion';
 import ChatInterface from '../components/ChatInterface';
 import AudioController from '../components/audio/AudioController';
 import TriviaGame from '../components/games/TriviaGame';
+import CharacterGuesser from '../components/games/CharacterGuesser';
 import TimeMachineAPI from '../services/api';
 import { useTheme } from '../components/theme/ThemeProvider';
 
 const Era1980sPage: React.FC = () => {
   const [serverInfo, setServerInfo] = useState<any>(null);
   const [showTrivia, setShowTrivia] = useState(false);
+  const [showCharacterGuesser, setShowCharacterGuesser] = useState(false);
   const { setTheme } = useTheme();
 
   // Apply 1980s theme when component mounts
@@ -38,6 +40,14 @@ const Era1980sPage: React.FC = () => {
 
   const handleCloseTrivia = () => {
     setShowTrivia(false);
+  };
+
+  const handleOpenCharacterGuesser = () => {
+    setShowCharacterGuesser(true);
+  };
+
+  const handleCloseCharacterGuesser = () => {
+    setShowCharacterGuesser(false);
   };
 
   return (
@@ -108,10 +118,33 @@ const Era1980sPage: React.FC = () => {
         >
           🎮 Play Trivia
         </motion.button>
+
+        <motion.button 
+          className="character-guesser-launcher"
+          onClick={handleOpenCharacterGuesser}
+          title="AI Character Mind Reader!"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+            delay: 1.0
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          🧠 Mind Reader
+        </motion.button>
         
         <TriviaGame 
           isOpen={showTrivia}
           onClose={handleCloseTrivia}
+        />
+
+        <CharacterGuesser 
+          isOpen={showCharacterGuesser}
+          onClose={handleCloseCharacterGuesser}
         />
       </main>
 

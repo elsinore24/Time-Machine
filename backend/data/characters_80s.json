@@ -1,0 +1,382 @@
+[
+  {
+    "name": "E.T.",
+    "attributes": {
+      "is_real": false,
+      "is_human": false,
+      "is_from_movie": true,
+      "is_from_tv": false,
+      "is_alien": true,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": false,
+      "is_magical": true,
+      "is_small": true,
+      "is_friendly": true,
+      "has_special_powers": true,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Optimus Prime",
+    "attributes": {
+      "is_real": false,
+      "is_human": false,
+      "is_from_movie": true,
+      "is_from_tv": true,
+      "is_alien": true,
+      "is_robot": true,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": true,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Madonna",
+    "attributes": {
+      "is_real": true,
+      "is_human": true,
+      "is_from_movie": true,
+      "is_from_tv": false,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": true,
+      "is_villain": false,
+      "fights_evil": false,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Michael Jackson",
+    "attributes": {
+      "is_real": true,
+      "is_human": true,
+      "is_from_movie": true,
+      "is_from_tv": true,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": true,
+      "is_villain": false,
+      "fights_evil": false,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "The Terminator",
+    "attributes": {
+      "is_real": false,
+      "is_human": false,
+      "is_from_movie": true,
+      "is_from_tv": false,
+      "is_alien": false,
+      "is_robot": true,
+      "is_musician": false,
+      "is_villain": true,
+      "fights_evil": false,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": false,
+      "has_special_powers": true,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Princess Leia",
+    "attributes": {
+      "is_real": false,
+      "is_human": true,
+      "is_from_movie": true,
+      "is_from_tv": false,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": true,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": true,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Pac-Man",
+    "attributes": {
+      "is_real": false,
+      "is_human": false,
+      "is_from_movie": false,
+      "is_from_tv": true,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": false,
+      "is_small": true,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Marty McFly",
+    "attributes": {
+      "is_real": false,
+      "is_human": true,
+      "is_from_movie": true,
+      "is_from_tv": false,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": true,
+      "is_villain": false,
+      "fights_evil": false,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Mr. T",
+    "attributes": {
+      "is_real": true,
+      "is_human": true,
+      "is_from_movie": true,
+      "is_from_tv": true,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "ALF",
+    "attributes": {
+      "is_real": false,
+      "is_human": false,
+      "is_from_movie": false,
+      "is_from_tv": true,
+      "is_alien": true,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": false,
+      "is_magical": false,
+      "is_small": true,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "MacGyver",
+    "attributes": {
+      "is_real": false,
+      "is_human": true,
+      "is_from_movie": false,
+      "is_from_tv": true,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Darth Vader",
+    "attributes": {
+      "is_real": false,
+      "is_human": true,
+      "is_from_movie": true,
+      "is_from_tv": false,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": true,
+      "fights_evil": false,
+      "is_magical": true,
+      "is_small": false,
+      "is_friendly": false,
+      "has_special_powers": true,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Magnum P.I.",
+    "attributes": {
+      "is_real": false,
+      "is_human": true,
+      "is_from_movie": false,
+      "is_from_tv": true,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "He-Man",
+    "attributes": {
+      "is_real": false,
+      "is_human": true,
+      "is_from_movie": false,
+      "is_from_tv": true,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": true,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": true,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Inspector Gadget",
+    "attributes": {
+      "is_real": false,
+      "is_human": true,
+      "is_from_movie": false,
+      "is_from_tv": true,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": true,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Hulk Hogan",
+    "attributes": {
+      "is_real": true,
+      "is_human": true,
+      "is_from_movie": true,
+      "is_from_tv": true,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Rubik's Cube",
+    "attributes": {
+      "is_real": true,
+      "is_human": false,
+      "is_from_movie": false,
+      "is_from_tv": false,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": false,
+      "is_magical": false,
+      "is_small": true,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Rambo",
+    "attributes": {
+      "is_real": false,
+      "is_human": true,
+      "is_from_movie": true,
+      "is_from_tv": false,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": false,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "Cyndi Lauper",
+    "attributes": {
+      "is_real": true,
+      "is_human": true,
+      "is_from_movie": true,
+      "is_from_tv": true,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": true,
+      "is_villain": false,
+      "fights_evil": false,
+      "is_magical": false,
+      "is_small": false,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  },
+  {
+    "name": "The Smurfs",
+    "attributes": {
+      "is_real": false,
+      "is_human": false,
+      "is_from_movie": true,
+      "is_from_tv": true,
+      "is_alien": false,
+      "is_robot": false,
+      "is_musician": false,
+      "is_villain": false,
+      "fights_evil": true,
+      "is_magical": true,
+      "is_small": true,
+      "is_friendly": true,
+      "has_special_powers": false,
+      "is_famous_in_80s": true
+    }
+  }
+]
