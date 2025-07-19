@@ -12,7 +12,7 @@ from huggingface_hub import snapshot_download
 
 # Import local modules
 from config import config
-from prompts import SYSTEM_PROMPT, RAG_PROMPT_TEMPLATE, get_few_shot_examples
+from prompts import get_system_prompt, get_rag_prompt_template, get_few_shot_examples
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -120,9 +120,9 @@ class RAGChain:
             contexts = self.retrieve_context(query)
             formatted_context = self.format_context(contexts)
             
-            # Create system message with context
+            # Create system message with context and current date
             system_message = SystemMessage(
-                content=SYSTEM_PROMPT.format(context=formatted_context)
+                content=get_system_prompt().format(context=formatted_context)
             )
             
             # Create human message
@@ -131,8 +131,8 @@ class RAGChain:
             # Get few-shot examples for better responses
             few_shot_examples = get_few_shot_examples()
             
-            # Construct full prompt
-            full_prompt = RAG_PROMPT_TEMPLATE.format(
+            # Construct full prompt with current date
+            full_prompt = get_rag_prompt_template().format(
                 context=formatted_context,
                 query=query
             )
