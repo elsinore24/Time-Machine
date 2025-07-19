@@ -1,0 +1,239 @@
+{
+  "_config": {
+    "radio_stream": {
+      "url": "http://puma.streemlion.com:2910/stream",
+      "name": "1980s Radio Stream",
+      "description": "Streaming 1980s music for immersive Time Machine experience",
+      "backup_urls": [
+        "https://stream.80s80s.de"
+      ]
+    }
+  },
+  "_data": [
+  {
+    "id": "snippet1",
+    "text": "Totally tubular: An iconic 80s slang term expressing that something is awesome or excellent. Originating from surfer culture, it was used to describe a perfect wave. For example, 'That concert was totally tubular!' Analogy: It's the 80s equivalent of saying something is 'epic' or 'fire' today.",
+    "metadata": {
+      "category": "slang",
+      "year": "1980s",
+      "source": "Your report - surfer culture"
+    }
+  },
+  {
+    "id": "snippet2",
+    "text": "The Reagan Era began with Ronald Reagan's victory over Jimmy Carter in the 1980 presidential election. This marked a significant conservative shift in American politics, characterized by the 'peace through strength' foreign policy and 'Reaganomics' at home, which focused on tax cuts and reduced government spending.",
+    "metadata": {
+      "category": "events",
+      "year": "1980",
+      "source": "Wikipedia - 1980s"
+    }
+  },
+  {
+    "id": "snippet3",
+    "text": "The Rubik's Cube became a massive fad in 1980. This 3-D combination puzzle, invented by Hungarian sculptor Ernő Rubik, challenged and frustrated millions. Its popularity soared, leading to competitions and a global obsession with solving its colorful sides. Analogy: The Rubik's Cube was the viral TikTok challenge of its time, a solitary yet shared experience of maddening addiction.",
+    "metadata": {
+      "category": "fads",
+      "year": "1980",
+      "source": "80s Fandom Wiki"
+    }
+  },
+  {
+    "id": "snippet4",
+    "text": "The assassination of John Lennon on December 8, 1980, sent shockwaves of grief and disbelief around the world. The former Beatle, a prominent voice for peace, was shot and killed outside his New York City apartment building, The Dakota. This event marked a tragic end to an era for many music lovers.",
+    "metadata": {
+      "category": "events",
+      "year": "1980",
+      "source": "Your report - timelines"
+    }
+  },
+  {
+    "id": "snippet5",
+    "text": "The Space Shuttle Columbia's first launch in 1981 marked a new era of reusable spacecraft for NASA. This milestone symbolized American technological prowess and ambition in space exploration. Analogy: The launch of the first Space Shuttle was like the introduction of the first commercially successful electric car; a leap towards a more sustainable and reusable future in its respective field.",
+    "metadata": {
+      "category": "events",
+      "year": "1981",
+      "source": "Your report - timelines"
+    }
+  },
+  {
+    "id": "snippet6",
+    "text": "The wedding of Prince Charles and Lady Diana Spencer in 1981 was a global media event, watched by an estimated 750 million people. The 'wedding of the century' was a grand spectacle of royal tradition and pageantry. Analogy: This royal wedding was the 80s equivalent of a season finale of a blockbuster streaming series, with the whole world tuning in for the fairytale moment.",
+    "metadata": {
+      "category": "events",
+      "year": "1981",
+      "source": "Your report - timelines"
+    }
+  },
+  {
+    "id": "snippet7",
+    "text": "The release of the IBM Personal Computer (PC) in 1981 was a pivotal moment in the history of computing. It brought personal computing into homes and offices on a much wider scale than before. Analogy: The IBM PC was to the 1980s what the iPhone was to the late 2000s, a device that fundamentally changed how we work and communicate.",
+    "metadata": {
+      "category": "events",
+      "year": "1981",
+      "source": "Your report - electronics"
+    }
+  },
+  {
+    "id": "snippet8",
+    "text": "MTV (Music Television) launched on August 1, 1981, with the first music video shown being 'Video Killed the Radio Star' by The Buggles. This new cable channel revolutionized the music industry, making visual style as important as sound. Artists who embraced the music video format, like Michael Jackson and Madonna, became global superstars.",
+    "metadata": {
+      "category": "music",
+      "year": "1981",
+      "source": "Your report - music"
+    }
+  },
+  {
+    "id": "snippet9",
+    "text": "The AIDS crisis began to be recognized in the early 1980s. Initially, the mysterious illness was met with fear and misinformation, leading to widespread stigma and discrimination against those affected, particularly gay men. Analogy: The AIDS crisis was like a silent, slow-motion disaster in the 1980s, its true scale and impact only becoming clear over time, similar to how the dangers of climate change have slowly dawned on global consciousness.",
+    "metadata": {
+      "category": "crises",
+      "year": "1980s",
+      "source": "Your report - cultural commentary"
+    }
+  },
+  {
+    "id": "snippet10",
+    "text": "The Falklands War was a ten-week undeclared war between Argentina and the United Kingdom in 1982 over two British dependent territories in the South Atlantic. The conflict was a major event of the Cold War, and the British victory contributed to the reelection of Prime Minister Margaret Thatcher.",
+    "metadata": {
+      "category": "events",
+      "year": "1982",
+      "source": "Your report - timelines"
+    }
+  },
+  {
+    "id": "snippet11",
+    "text": "The release of Michael Jackson's album 'Thriller' in 1982 was a cultural phenomenon. It became the best-selling album of all time and broke racial barriers on MTV with its groundbreaking music videos. The 'Thriller' short film, in particular, set a new standard for music video production.",
+    "metadata": {
+      "category": "music",
+      "year": "1982",
+      "source": "Your report - music"
+    }
+  },
+  {
+    "id": "snippet12",
+    "text": "The introduction of the Commodore 64 in 1982 brought home computing and gaming to the masses. It was more affordable than many of its competitors and became the best-selling single computer model of all time. Analogy: The Commodore 64 was the 80s equivalent of today's affordable gaming consoles, opening up a world of digital entertainment to a wide audience.",
+    "metadata": {
+      "category": "electronics",
+      "year": "1982",
+      "source": "Your report - electronics"
+    }
+  },
+  {
+    "id": "snippet13",
+    "text": "The final episode of M*A*S*H, 'Goodbye, Farewell and Amen,' aired in 1983 and remains one of the most-watched television broadcasts in American history. The conclusion of the beloved series, which followed a team of army doctors during the Korean War, marked the end of an era for television.",
+    "metadata": {
+      "category": "events",
+      "year": "1983",
+      "source": "Your report - popular culture"
+    }
+  },
+  {
+    "id": "snippet14",
+    "text": "The introduction of the first cellular phone, the Motorola DynaTAC 8000X, in 1983 revolutionized communication. Weighing nearly two pounds and costing thousands of dollars, it was a status symbol of the wealthy. Analogy: The first cell phone was like the earliest virtual reality headsets; bulky, expensive, and a glimpse into a future that would eventually become mainstream.",
+    "metadata": {
+      "category": "electronics",
+      "year": "1983",
+      "source": "Your report - electronics"
+    }
+  },
+  {
+    "id": "snippet15",
+    "text": "The Chernobyl disaster in 1986 was a catastrophic nuclear accident in the Ukrainian SSR. The explosion and fire released large quantities of radioactive particles into the atmosphere, which spread over much of Western USSR and Europe. It is considered the worst nuclear disaster in history.",
+    "metadata": {
+      "category": "crises",
+      "year": "1986",
+      "source": "Wikipedia - 1980s"
+    }
+  },
+  {
+    "id": "snippet16",
+    "text": "The Challenger disaster on January 28, 1986, was a tragic event in which the Space Shuttle Challenger broke apart 73 seconds into its flight, killing all seven crew members. The disaster led to a major re-evaluation of NASA's safety protocols and a temporary halt to the shuttle program.",
+    "metadata": {
+      "category": "crises",
+      "year": "1986",
+      "source": "Your report - timelines"
+    }
+  },
+  {
+    "id": "snippet17",
+    "text": "The fall of the Berlin Wall on November 9, 1989, was a pivotal moment in the end of the Cold War. The opening of the border between East and West Berlin symbolized the collapse of the Eastern Bloc and the reunification of Germany. Analogy: The fall of the Berlin Wall was like a dam breaking after decades of pressure, releasing a flood of change across Eastern Europe.",
+    "metadata": {
+      "category": "events",
+      "year": "1989",
+      "source": "Your report - timelines"
+    }
+  },
+  {
+    "id": "snippet18",
+    "text": "The 'War on Drugs' was a major government initiative of the 1980s, particularly under the Reagan administration. This campaign aimed to reduce illegal drug use and trade through increased law enforcement and harsh penalties. It led to a significant increase in the US prison population.",
+    "metadata": {
+      "category": "crises",
+      "year": "1980s",
+      "source": "Your report - cultural commentary"
+    }
+  },
+  {
+    "id": "snippet19",
+    "text": "Slang: 'Gag me with a spoon!' This phrase was a popular expression of disgust or disappointment, often used in a lighthearted or sarcastic way. It originated with the Valley Girl subculture of the San Fernando Valley in California. For example, 'He's wearing that ugly shirt again? Gag me with a spoon!'",
+    "metadata": {
+      "category": "slang",
+      "year": "1980s",
+      "source": "Your report - slang"
+    }
+  },
+  {
+    "id": "snippet20",
+    "text": "Fad: Cabbage Patch Kids were the must-have toy of the mid-1980s. These dolls with their unique 'adoption' certificates created a frenzy among parents and children, leading to long lines and even fights in stores. Analogy: The Cabbage Patch Kids craze was the 80s version of Black Friday doorbuster deals, with a similar level of consumer desperation and hype.",
+    "metadata": {
+      "category": "fads",
+      "year": "1983-1986",
+      "source": "Your report - toys"
+    }
+  },
+  {
+    "id": "snippet21",
+    "text": "Music: The rise of hip-hop was a defining musical movement of the 1980s. Artists like Run-DMC, LL Cool J, and Public Enemy brought hip-hop from the streets of the Bronx to mainstream audiences, influencing music, fashion, and culture worldwide.",
+    "metadata": {
+      "category": "music",
+      "year": "1980s",
+      "source": "Your report - music"
+    }
+  },
+  {
+    "id": "snippet22",
+    "text": "Fashion: 'Power dressing' was a popular fashion trend for women in the 1980s, characterized by tailored suits with wide, padded shoulders, and bold colors. This style was meant to project an image of confidence and authority in the workplace.",
+    "metadata": {
+      "category": "fashion",
+      "year": "1980s",
+      "source": "Your report - fashion"
+    }
+  },
+  {
+    "id": "snippet23",
+    "text": "Analogy: The Sony Walkman was the 1980s version of a personal social media feed. It allowed individuals to curate their own soundtrack to their lives, creating a private bubble of sound in public spaces, much like how people now scroll through their personalized feeds on their smartphones.",
+    "metadata": {
+      "category": "analogies",
+      "year": "1980s",
+      "source": "Original Analogy"
+    }
+  },
+  {
+    "id": "snippet24",
+    "text": "Slang: 'What's your damage?' A quintessential 80s phrase, popularized by the film 'Heathers,' used to ask someone what their problem is, often in a confrontational or exasperated tone. For instance, 'You've been ignoring me all day. What's your damage?'",
+    "metadata": {
+      "category": "slang",
+      "year": "1988",
+      "source": "Your report - slang"
+    }
+  },
+  {
+    "id": "snippet25",
+    "text": "Fad: The popularity of aerobics, led by fitness gurus like Jane Fonda, swept the nation in the 1980s. This fitness craze was characterized by high-energy workouts, colorful leotards, and leg warmers. It made exercise a mainstream and fashionable activity.",
+    "metadata": {
+      "category": "fads",
+      "year": "1980s",
+      "source": "Your report - popular culture"
+    }
+  }
+]
+}

@@ -1,0 +1,288 @@
+/* 1980s Neon Theme - Apply radical 1980s aesthetics when era is selected */
+
+/* Import retro fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Audiowide&display=swap');
+
+/* CSS Variables for 1980s color palette */
+:root {
+  --neon-pink: #ff1493;
+  --neon-blue: #00bfff;
+  --neon-green: #39ff14;
+  --neon-purple: #8a2be2;
+  --neon-orange: #ff4500;
+  --neon-yellow: #ffd700;
+  --dark-bg: #0a0a0a;
+  --dark-purple: #1a0d2e;
+  --dark-blue: #0d1421;
+  --glow-intensity: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+}
+
+/* 1980s Theme Applied to Body */
+body.theme-1980s {
+  background: linear-gradient(135deg, var(--dark-purple) 0%, var(--dark-blue) 50%, var(--dark-bg) 100%);
+  color: var(--neon-green);
+  font-family: 'Orbitron', monospace;
+  overflow-x: hidden;
+}
+
+/* Animated grid background pattern */
+body.theme-1980s::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 191, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 191, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Main App Container - 1980s Theme */
+.App.theme-1980s {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--neon-blue);
+  box-shadow: 
+    0 0 20px var(--neon-blue),
+    inset 0 0 20px rgba(0, 191, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Header - Neon transformation */
+.app-header.theme-1980s {
+  background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple), var(--neon-blue));
+  border-bottom: 3px solid var(--neon-green);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-header.theme-1980s::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.app-title.theme-1980s {
+  font-family: 'Audiowide', cursive;
+  text-shadow: 
+    0 0 5px var(--neon-pink),
+    0 0 10px var(--neon-pink),
+    0 0 15px var(--neon-pink),
+    0 0 20px var(--neon-pink);
+  animation: titlePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes titlePulse {
+  from { text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink); }
+  to { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink); }
+}
+
+/* Era Selector - Retro Terminal Style */
+.era-selector.theme-1980s {
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid var(--neon-green);
+  box-shadow: 
+    0 0 15px var(--neon-green),
+    inset 0 0 15px rgba(57, 255, 20, 0.1);
+}
+
+.era-dropdown.theme-1980s {
+  background: var(--dark-bg);
+  color: var(--neon-green);
+  border: 1px solid var(--neon-blue);
+  font-family: 'Orbitron', monospace;
+  text-shadow: 0 0 5px currentColor;
+}
+
+.era-dropdown.theme-1980s:focus {
+  box-shadow: 0 0 15px var(--neon-blue);
+  outline: none;
+}
+
+/* Message Bubbles - Neon Glow */
+.message-bubble.user.theme-1980s .message-content {
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+  border: 1px solid var(--neon-pink);
+  box-shadow: 
+    0 0 15px var(--neon-pink),
+    inset 0 0 10px rgba(255, 20, 147, 0.2);
+}
+
+.message-bubble.ai.theme-1980s .message-content {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--neon-green);
+  color: var(--neon-green);
+  box-shadow: 
+    0 0 15px var(--neon-green),
+    inset 0 0 10px rgba(57, 255, 20, 0.1);
+}
+
+/* Chat Input - Terminal Style */
+.chat-input.theme-1980s {
+  background: rgba(0, 0, 0, 0.9);
+  color: var(--neon-green);
+  border: 2px solid var(--neon-blue);
+  font-family: 'Orbitron', monospace;
+  box-shadow: 
+    0 0 10px var(--neon-blue),
+    inset 0 0 10px rgba(0, 191, 255, 0.1);
+}
+
+.chat-input.theme-1980s:focus {
+  box-shadow: 
+    0 0 20px var(--neon-blue),
+    inset 0 0 15px rgba(0, 191, 255, 0.2);
+}
+
+.chat-input.theme-1980s::placeholder {
+  color: rgba(57, 255, 20, 0.6);
+}
+
+/* Send Button - Neon Power Button */
+.send-button.theme-1980s {
+  background: linear-gradient(45deg, var(--neon-orange), var(--neon-yellow));
+  border: 2px solid var(--neon-orange);
+  box-shadow: 
+    0 0 15px var(--neon-orange),
+    inset 0 0 10px rgba(255, 69, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.send-button.theme-1980s:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 0 25px var(--neon-orange),
+    0 5px 15px rgba(255, 69, 0, 0.4);
+}
+
+/* Connection Status - Retro Monitor */
+.connection-status.theme-1980s {
+  background: rgba(0, 0, 0, 0.9);
+  border-bottom: 1px solid var(--neon-blue);
+  font-family: 'Orbitron', monospace;
+}
+
+.connection-status.connected.theme-1980s {
+  background: rgba(0, 20, 0, 0.9);
+  color: var(--neon-green);
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+}
+
+.connection-status.disconnected.theme-1980s {
+  background: rgba(20, 0, 0, 0.9);
+  color: var(--neon-pink);
+  box-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
+}
+
+/* Typing Indicator - Retro Loading */
+.typing-dots.theme-1980s span {
+  background: var(--neon-green);
+  box-shadow: 0 0 10px var(--neon-green);
+}
+
+/* Scrollbar Styling */
+.messages-container.theme-1980s::-webkit-scrollbar {
+  width: 12px;
+}
+
+.messages-container.theme-1980s::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+  border: 1px solid var(--neon-blue);
+}
+
+.messages-container.theme-1980s::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--neon-blue), var(--neon-purple));
+  border-radius: 6px;
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+/* Scanline Effect */
+.app-main.theme-1980s::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 191, 255, 0.03) 2px,
+    rgba(0, 191, 255, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Retro Button Animations */
+.theme-1980s button {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-1980s button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.theme-1980s button:hover::before {
+  left: 100%;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  body.theme-1980s::before {
+    background-size: 30px 30px;
+  }
+  
+  .app-title.theme-1980s {
+    font-size: 1.8rem;
+  }
+  
+  .message-content.theme-1980s {
+    font-size: 0.9rem;
+  }
+}
+
+/* High contrast mode for accessibility */
+@media (prefers-contrast: high) {
+  .theme-1980s {
+    --neon-pink: #ff69b4;
+    --neon-blue: #87ceeb;
+    --neon-green: #90ee90;
+  }
+}
