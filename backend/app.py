@@ -26,17 +26,26 @@ async def lifespan(app: FastAPI):
     try:
         # Debug: Check environment variables before validation
         import os
+        logger.info(f"Debug - All env vars: {list(os.environ.keys())}")
         logger.info(f"Debug - OPENAI_API_KEY set: {bool(os.getenv('OPENAI_API_KEY'))}")
         logger.info(f"Debug - PINECONE_API_KEY set: {bool(os.getenv('PINECONE_API_KEY'))}")
         logger.info(f"Debug - PINECONE_ENVIRONMENT set: {bool(os.getenv('PINECONE_ENVIRONMENT'))}")
+        logger.info(f"Debug - Railway PORT: {os.getenv('PORT', 'not set')}")
+        logger.info(f"Debug - Railway URL: {os.getenv('RAILWAY_PUBLIC_DOMAIN', 'not set')}")
         
         # Validate configuration
-        config.validate()
-        
-        # Initialize RAG chain
-        global rag_chain
-        rag_chain = RAGChain()
-        await rag_chain.initialize()
+        try:
+            config.validate()
+            
+            # Initialize RAG chain
+            global rag_chain
+            rag_chain = RAGChain()
+            await rag_chain.initialize()
+        except ValueError as e:
+            logger.warning(f"Configuration validation failed: {str(e)}")
+            logger.warning("Running in LIMITED MODE - Chat functionality will not work!")
+            # Don't initialize RAG chain if config is invalid
+            rag_chain = None
         
         logger.info("Time Machine API started successfully!")
     except Exception as e:
