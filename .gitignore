@@ -64,5 +64,8 @@ coverage/
 temp.html
 *.tmp
 
+# MCP tools
+mcp-image-downloader/
+
 # Keep example files
 !.env.example
