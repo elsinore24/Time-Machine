@@ -22,8 +22,8 @@
 }
 
 .audio-controls.expanded {
-  width: 280px;
-  min-height: 200px;
+  width: 320px;
+  min-height: 250px;
 }
 
 .audio-toggle-btn {
@@ -102,6 +102,16 @@
   box-shadow: 0 0 15px rgba(57, 255, 20, 0.7);
 }
 
+.audio-btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.audio-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .volume-slider {
   width: 120px;
   margin: 0 10px;
@@ -150,6 +160,106 @@
   50% { height: 20px; }
 }
 
+/* Mobile Volume Message */
+.mobile-volume-message {
+  text-align: center;
+}
+
+.mobile-hint {
+  color: var(--neon-blue, #00bfff);
+  font-size: 11px;
+  font-style: italic;
+}
+
+/* Station Roller Styles */
+.station-options {
+  margin-bottom: 10px;
+}
+
+.station-roller {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 5px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-blue, #00bfff) transparent;
+}
+
+.station-roller::-webkit-scrollbar {
+  height: 4px;
+}
+
+.station-roller::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+
+.station-roller::-webkit-scrollbar-thumb {
+  background: var(--neon-blue, #00bfff);
+  border-radius: 2px;
+}
+
+.station-btn {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--neon-blue, #00bfff);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.station-btn:hover {
+  background: rgba(0, 191, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.station-btn.active {
+  background: var(--neon-blue, #00bfff);
+  color: black;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
+}
+
+.station-info {
+  text-align: center;
+}
+
+.station-name {
+  color: var(--neon-green, #39ff14);
+  font-size: 10px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  font-family: 'Orbitron', monospace;
+}
+
+.station-freq {
+  color: var(--neon-blue, #00bfff);
+  font-size: 9px;
+  margin-bottom: 1px;
+}
+
+.station-genre {
+  color: var(--neon-pink, #ff1493);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.station-btn.active .station-name,
+.station-btn.active .station-freq,
+.station-btn.active .station-genre {
+  color: black;
+}
+
+.station-description {
+  font-size: 10px;
+  color: var(--neon-blue, #00bfff);
+  margin-top: 3px;
+  font-style: italic;
+}
+
 @media (max-width: 768px) {
   .audio-controller {
     top: 10px;
@@ -157,10 +267,44 @@
   }
   
   .audio-controls.expanded {
-    width: 250px;
+    width: 280px;
+    max-width: calc(100vw - 40px);
   }
   
-  .volume-slider {
-    width: 100px;
+  .station-roller {
+    gap: 6px;
+  }
+  
+  .station-btn {
+    min-width: 70px;
+    padding: 6px 8px;
+  }
+  
+  .station-name {
+    font-size: 9px;
+  }
+  
+  .station-freq {
+    font-size: 8px;
+  }
+  
+  .station-genre {
+    font-size: 7px;
+  }
+  
+  .mobile-hint {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .audio-controls.expanded {
+    width: 260px;
+    max-width: calc(100vw - 20px);
+  }
+  
+  .station-btn {
+    min-width: 60px;
+    padding: 4px 6px;
   }
 }
