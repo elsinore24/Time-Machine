@@ -43,7 +43,7 @@ const FindIconGame: React.FC<FindIconGameProps> = ({ isOpen, onClose }) => {
     panX: 0,
     panY: 0,
     zoom: 1,
-    isLoading: true
+    isLoading: false  // Start as not loading
   });
 
   const [touchState, setTouchState] = useState<TouchState>({
@@ -61,16 +61,30 @@ const FindIconGame: React.FC<FindIconGameProps> = ({ isOpen, onClose }) => {
 
   // Initialize canvas and load background image
   useEffect(() => {
-    if (!isOpen || !gameStarted || !currentLevel) return;
+    console.log('FindIconGame useEffect triggered:', { isOpen, gameStarted, currentLevel: !!currentLevel });
+    
+    if (!isOpen || !gameStarted || !currentLevel) {
+      console.log('Early return from useEffect');
+      return;
+    }
 
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      console.log('No canvas ref available');
+      return;
+    }
 
     // Set canvas size
     const container = containerRef.current;
     if (container) {
       canvas.width = container.clientWidth;
       canvas.height = container.clientHeight;
+      console.log('Canvas size set:', canvas.width, 'x', canvas.height);
+    } else {
+      console.log('No container ref available');
+      // Set default size if container not available
+      canvas.width = 800;
+      canvas.height = 600;
     }
 
     // Skip image loading for now and proceed directly to game
@@ -84,6 +98,8 @@ const FindIconGame: React.FC<FindIconGameProps> = ({ isOpen, onClose }) => {
     const scaleX = canvas.width / fallbackWidth;
     const scaleY = canvas.height / fallbackHeight;
     const initialZoom = Math.min(scaleX, scaleY) * 0.8;
+    
+    console.log('Setting initial game state with zoom:', initialZoom);
     
     setGameState(prev => ({ 
       ...prev, 
@@ -200,8 +216,12 @@ const FindIconGame: React.FC<FindIconGameProps> = ({ isOpen, onClose }) => {
 
   // Render game when state changes
   useEffect(() => {
+    console.log('Render useEffect triggered:', { isLoading: gameState.isLoading });
     if (!gameState.isLoading) {
+      console.log('Calling renderGame');
       renderGame();
+    } else {
+      console.log('Still loading, not rendering game');
     }
   }, [gameState, renderGame]);
 
@@ -389,6 +409,10 @@ const FindIconGame: React.FC<FindIconGameProps> = ({ isOpen, onClose }) => {
 
   // Start game
   const startGame = (levelIndex: number = 0) => {
+    console.log('startGame called with levelIndex:', levelIndex);
+    console.log('Available levels:', FIND_GAME_LEVELS.length);
+    console.log('Selected level:', FIND_GAME_LEVELS[levelIndex]);
+    
     setGameState({
       currentLevel: levelIndex,
       foundObjects: new Set(),
@@ -398,9 +422,10 @@ const FindIconGame: React.FC<FindIconGameProps> = ({ isOpen, onClose }) => {
       panX: 0,
       panY: 0,
       zoom: 1,
-      isLoading: true
+      isLoading: false  // Set to false immediately since we're not loading images
     });
     setGameStarted(true);
+    console.log('Game state updated, gameStarted set to true');
   };
 
   // Close explanation and continue
@@ -420,7 +445,7 @@ const FindIconGame: React.FC<FindIconGameProps> = ({ isOpen, onClose }) => {
       panX: 0,
       panY: 0,
       zoom: 1,
-      isLoading: true
+      isLoading: false  // Not loading when resetting
     });
   };
 
